@@ -1,0 +1,6 @@
+<a href="/products/<%= product._id; %>" class="product">
+    <h1><%= product.name; %></h1>
+    <img src="/public/pictures/<%= product.picture || 'https://pikuco.ru/upload/test_stable/086/0861f35c94aeb9b3026843463da26d1c.jpg' %>"
+         alt="<%= product.name; %>" class="productPicture">
+    <h2><%= product.cost; %> руб</h2>
+</a>

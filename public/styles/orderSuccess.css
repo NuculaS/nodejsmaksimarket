@@ -1,0 +1,39 @@
+.orderPage {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 80vh;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.orderPage p {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+}
+
+.orderPage a {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    padding: 15px 15px;
+    transition: all 0.2s ease-in-out;
+    background-color: #ffffff;
+    cursor: pointer;
+    color: #080710;
+    text-decoration: none;
+}
+
+.orderPage a:hover {
+    transition: all 0.2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+}
+
+@media screen and (max-width: 560px) {
+    .orderPage {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

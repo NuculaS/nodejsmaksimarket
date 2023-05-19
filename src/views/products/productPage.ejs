@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="/public/styles/product_page.css">
+
+<div class="productPage">
+    <h1 class="productName"><%= options?.product.name; %></h1>
+
+    <div class="product">
+        <img src="/public/pictures/<%= options?.product.picture || 'https://pikuco.ru/upload/test_stable/086/0861f35c94aeb9b3026843463da26d1c.jpg' %>"
+             alt="<%= options?.product.name; %>" class="productPicture">
+        <div class="productInfo">
+            <p><%= options?.product.description; %></p>
+            <h2><%= options?.product.cost; %> руб</h2>
+
+            <div class="productCount">
+                <button class="small minus">－</button>
+                <b class="counter">1</b>
+                <button class="small plus">＋</button>
+                <p class="error"></p>
+            </div>
+            <div class="cartBlock">
+                <button class="addProduct">Добавить в корзину</button>
+                <p><a href="/cart">В корзине:</a> <b class="syncCounter">0</b></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const addProduct = document.querySelector('.addProduct')
+
+    const plusBtn = document.querySelector('.plus')
+    const minusBtn = document.querySelector('.minus')
+    const counter = document.querySelector('.counter')
+    const syncCounter = document.querySelector('.syncCounter')
+
+    const error = document.querySelector('.error')
+
+    let count = 1
+    const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : {}
+
+    let currentProduct = {
+        _id: '<%= options?.product._id; %>',
+        name: '<%= options?.product.name; %>',
+        description: '<%= options?.product.description; %>',
+        picture: '<%= options?.product.picture; %>',
+        cost: Number('<%= options?.product.cost; %>'),
+        count: 0
+    }
+
+
+    if (cart.products) {
+        const elem = cart.products.find(item => item._id === `<%= options?.product._id; %>`)
+
+        if (elem) {
+            currentProduct = elem
+        } else {
+            cart.products.push(currentProduct)
+        }
+    } else {
+        cart.products = [currentProduct]
+    }
+
+    let syncCount = currentProduct.count
+
+    syncCounter.innerHTML = syncCount
+    let totalAmount = cart.totalAmount || 0
+
+    checkError()
+
+    plusBtn.addEventListener('click', () => {
+        count++
+        counter.innerHTML = count
+        checkError()
+    })
+
+    minusBtn.addEventListener('click', () => {
+        count--
+        if (count < 1) {
+            counter.innerHTML = 1
+            count = 1
+        } else {
+            counter.innerHTML = count
+        }
+        checkError()
+    })
+
+    function checkError() {
+        if (totalAmount + currentProduct.cost * count > 3000) {
+            error.innerHTML = 'Полная предоплата'
+        } else {
+            error.innerHTML = ''
+        }
+    }
+
+    function addProductHandler() {
+        if (count !== 0) {
+            syncCounter.innerHTML = currentProduct.count = syncCount += count
+            cart.totalAmount = totalAmount += Number('<%= options?.product.cost; %>') * count
+            counter.innerHTML = count = 1
+
+            checkError()
+
+            localStorage.setItem('cart', JSON.stringify(cart))
+        }
+    }
+
+    addProduct.addEventListener('click', addProductHandler)
+</script>

@@ -1,0 +1,80 @@
+.createPage {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 80vh;
+    align-items: center;
+    padding: 40px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 40px;
+    width: 500px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 20px;
+}
+
+form input {
+    width: 100%;
+    font-size: 1.2rem;
+    display: block;
+    border-radius: 8px;
+    outline: none;
+    padding: 15px 15px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+    margin-top: 10px;
+}
+
+form input::placeholder {
+    color: #e5e5e5;
+}
+
+form input[type='file'] {
+    cursor: pointer;
+}
+
+form .error {
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.createPage button,
+.createPage a {
+    font-size: 1.2rem;
+    border-radius: 8px;
+    padding: 15px 15px;
+    transition: all 0.2s ease-in-out;
+    background-color: #ffffff;
+    cursor: pointer;
+    color: #080710;
+    text-decoration: none;
+    border: none;
+    margin-top: 20px;
+}
+
+.createPage button:hover,
+.createPage a:hover {
+    transition: all 0.2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+}
+
+@media screen and (max-width: 560px) {
+    form {
+        width: 100%;
+    }
+
+    .createPage {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

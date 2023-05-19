@@ -1,0 +1,119 @@
+.background,
+.background-reg {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+
+.background .shape,
+.background-reg .shape {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.background .shape:first-child {
+    background: linear-gradient(#1845ad, #23a2f6);
+    left: -175px;
+    top: -175px;
+}
+
+.background .shape:last-child {
+    background: linear-gradient(to right, #ff512f, #f09819);
+    left: 175px;
+    top: 175px;
+}
+
+.background-reg .shape:first-child {
+    background: linear-gradient(#1845ad, #23a2f6);
+    left: -175px;
+    top: -200px;
+}
+
+.background-reg .shape:last-child {
+    background: linear-gradient(to right, #ff512f, #f09819);
+    left: 175px;
+    top: 200px;
+}
+
+form {
+    z-index: 1;
+    padding: 20px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 12px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+}
+
+form input,
+form button {
+    width: 100%;
+    font-size: 1.2rem;
+    display: block;
+    border-radius: 8px;
+    padding: 10px 15px;
+    outline: none;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+form button {
+    background-color: #ffffff;
+    cursor: pointer;
+    color: #080710;
+}
+
+form label,
+form input[name='email'],
+form input[name='passwordConfirm'] {
+    margin-bottom: 15px;
+}
+
+form p {
+    margin-top: 15px;
+}
+
+form label {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+form input::placeholder {
+    color: #e5e5e5;
+}
+
+.password {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+form .hide-password {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background-size: contain;
+    background-image: url('https://img.icons8.com/ios-glyphs/30/FFFFFF/hide.png');
+}
+
+form .show-password {
+    background-image: url('https://img.icons8.com/ios-glyphs/30/FFFFFF/visible--v1.png');
+}
+
+form .error {
+    margin-bottom: 10px;
+    margin-top: 0;
+}

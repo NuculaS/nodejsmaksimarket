@@ -1,0 +1,69 @@
+header {
+    z-index: 1;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+header a {
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+header .avatar {
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.userInfo {
+    display: flex;
+}
+
+header .userInfo a {
+    display: block;
+    margin-right: 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    background-color: #ffffff;
+    height: 50px;
+    width: 50px;
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+header .userInfo a:hover {
+    transition: all 0.2s ease-in-out;
+    background-size: 75%;
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+header .userInfo .cart {
+    background-image: url('../icons/shopping-bag.png');
+}
+
+header .userInfo .cart:hover {
+    background-image: url('../icons/shopping-bag-white.png');
+}
+
+header .userInfo .home {
+    margin-right: 0;
+    background-size: 65%;
+    background-image: url('../icons/home.png');
+}
+
+header .userInfo .home:hover {
+    background-size: 65%;
+    background-image: url('../icons/home-white.png');
+}

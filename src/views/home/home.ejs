@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="/public/styles/home.css">
+
+<div class="homePage">
+    <h1 class="mainHeader">Список заказов</h1>
+    <% if(options?.countOfPages > 1) { %>
+        <p class="pagination">
+            <% if(options?.page > 1) { %>
+                <a href="/home?page=<%= options?.page - 1 %>"><%= options?.page - 1 %></a>
+            <% } %>
+
+            <a class="active" href="/home?page=<%= options?.page %>"><%= options?.page %></a>
+
+            <% if(options?.page < options?.countOfPages) { %>
+                <a href="/home?page=<%= options?.page + 1 %>"><%= options?.page + 1 %></a>
+            <% } %>
+        </p>
+    <% } %>
+    <div class="orderList">
+        <% options?.orderList.forEach(orderItem => { %>
+            <%- include('orderItem', {orderItem: orderItem}); %>
+        <% }); %>
+    </div>
+</div>

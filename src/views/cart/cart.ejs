@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="/public/styles/cart.css">
+
+<div class="cartPage">
+    <h1 class="mainHeader">Корзина</h1>
+    <div class="cartList"></div>
+</div>
+
+<script>
+    const cartList = document.querySelector('.cartList')
+    const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : {}
+
+    if (cart.products && cart.products.length) {
+        const cartListInfo = document.createElement('div')
+        cartListInfo.classList = 'cartListInfo'
+
+        const cartListInfoTotalCount = document.createElement('div')
+        cartListInfoTotalCount.className = 'cartListInfoTotalCount'
+
+        const cartListInfoTotalCountError = document.createElement('p')
+        cartListInfoTotalCountError.className = 'cartListInfoTotalCountError'
+        cartListInfoTotalCount.append(cartListInfoTotalCountError)
+
+        const cartListInfoTotalCountMoney = document.createElement('p')
+        cartListInfoTotalCountMoney.className = 'cartListInfoTotalCountMoney'
+        cartListInfoTotalCount.append(cartListInfoTotalCountMoney)
+
+        cartListInfo.append(cartListInfoTotalCount)
+
+        function updateTotalAmountAndCheckError(errorElem, moneyElem) {
+            if (cart.totalAmount > 3000) {
+                errorElem.innerHTML = 'Полная предоплата'
+            } else {
+                errorElem.innerHTML = 'Итого:'
+            }
+
+            moneyElem.innerHTML = `${cart.totalAmount} руб`
+        }
+
+        cart.products.forEach(item => {
+            const cartListProduct = document.createElement('div')
+            cartListProduct.classList = 'cartListProduct'
+            cartList.append(cartListProduct)
+
+            const cartListProductImg = document.createElement('img')
+            cartListProductImg.src = `/public/pictures/${item.picture}`
+            cartListProduct.append(cartListProductImg)
+
+            const cartListProductProduct = document.createElement('div')
+            cartListProductProduct.className = 'product'
+            cartListProduct.append(cartListProductProduct)
+
+            const cartListProductProductInfo = document.createElement('div')
+            cartListProductProductInfo.className = 'productInfo'
+            cartListProductProduct.append(cartListProductProductInfo)
+
+            const cartListProductProductInfoText = document.createElement('a')
+            cartListProductProductInfoText.href = `/products/${item._id}`
+            cartListProductProductInfoText.innerHTML = item.name
+            cartListProductProductInfo.append(cartListProductProductInfoText)
+
+            const cartListProductProductCount = document.createElement('div')
+            cartListProductProductCount.className = 'productCount'
+            cartListProductProductInfo.append(cartListProductProductCount)
+
+            const cartListProductProductCountMinus = document.createElement('button')
+            cartListProductProductCountMinus.className = 'small minus'
+            cartListProductProductCountMinus.innerHTML = '－'
+            cartListProductProductCount.append(cartListProductProductCountMinus)
+
+            const cartListProductProductCountCounter = document.createElement('b')
+            cartListProductProductCountCounter.className = 'counter'
+            cartListProductProductCountCounter.innerHTML = item.count
+            cartListProductProductCount.append(cartListProductProductCountCounter)
+
+            const cartListProductProductCountPlus = document.createElement('button')
+            cartListProductProductCountPlus.className = 'small plus'
+            cartListProductProductCountPlus.innerHTML = '＋'
+            cartListProductProductCount.append(cartListProductProductCountPlus)
+
+            const cartListProductProductCountInfo = document.createElement('p')
+            cartListProductProductCountInfo.className = 'cartListProductProductCountInfo'
+            cartListProductProductCountInfo.innerHTML = `⤫ ${item.cost} руб`
+            cartListProductProductCount.append(cartListProductProductCountInfo)
+
+            const cartListProductRemoveProduct = document.createElement('div')
+            cartListProductRemoveProduct.className = 'removeProduct'
+            cartListProductProduct.append(cartListProductRemoveProduct)
+
+            const cartListProductRemoveProductButton = document.createElement('button')
+            cartListProductRemoveProductButton.className = 'small remove'
+            cartListProductRemoveProductButton.innerHTML = '⤫'
+            cartListProductRemoveProduct.append(cartListProductRemoveProductButton)
+
+
+            cartListProductProductCountMinus.addEventListener('click', minusHandler)
+            cartListProductProductCountPlus.addEventListener('click', plusHandler)
+            cartListProductRemoveProductButton.addEventListener('click', removeHandler)
+
+            function removeHandler() {
+                cartListProduct.remove()
+
+                cart.totalAmount -= item.cost * item.count
+                updateTotalAmountAndCheckError(cartListInfoTotalCountError, cartListInfoTotalCountMoney)
+
+                cart.products = cart.products.filter(element => element._id !== item._id)
+
+                localStorage.setItem('cart', JSON.stringify(cart))
+
+                cartListProductProductCountMinus.removeEventListener('click', minusHandler)
+                cartListProductProductCountPlus.removeEventListener('click', plusHandler)
+                cartListProductRemoveProductButton.removeEventListener('click', removeHandler)
+
+                if (!cart.products.length) {
+                    cartList.innerHTML = 'Корзина пуста'
+                }
+            }
+
+            function plusHandler() {
+                cartListProductProductCountCounter.innerHTML = item.count += 1
+                cart.totalAmount += item.cost
+                updateTotalAmountAndCheckError(cartListInfoTotalCountError, cartListInfoTotalCountMoney)
+                localStorage.setItem('cart', JSON.stringify(cart))
+            }
+
+            function minusHandler() {
+                cartListProductProductCountCounter.innerHTML = item.count -= 1
+                cart.totalAmount -= item.cost
+                updateTotalAmountAndCheckError(cartListInfoTotalCountError, cartListInfoTotalCountMoney)
+                localStorage.setItem('cart', JSON.stringify(cart))
+
+                if (item.count === 0) {
+                    removeHandler()
+                }
+            }
+
+            updateTotalAmountAndCheckError(cartListInfoTotalCountError, cartListInfoTotalCountMoney)
+        })
+
+        cartList.append(cartListInfo)
+
+        const cartListOrder = document.createElement('div')
+        cartListOrder.classList = 'cartListOrder'
+        cartListOrder.innerHTML = '<a href="/order">Перейти к оформлению</a>'
+
+        cartList.append(cartListOrder)
+    } else {
+        cartList.innerHTML = 'Корзина пуста'
+    }
+</script>

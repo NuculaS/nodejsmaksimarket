@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="/public/styles/auth_register.css">
+
+<div class="background-reg">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<form action="" method="post">
+    <label>Регистрация</label>
+    <% if(options?.error) { %>
+        <p class="error"><%= options?.error; %></p>
+    <% } %>
+
+    <input type="email" name="email" placeholder="E-mail" required />
+    <div class="password">
+        <input type="password" name="password" class="password-input" placeholder="Пароль" required autocomplete="on" />
+        <i class="hide-password"></i>
+    </div>
+    <input type="password" name="passwordConfirm" class="password-input" placeholder="Подтвердите пароль" required
+           autocomplete="on" />
+
+    <button type="submit">Создать</button>
+    <p>Уже есть аккаунт? <a href="/auth<%= options?.page %>">Войти</a></p>
+</form>
+
+
+<script>
+    const error = document.querySelector('.error')
+    const inputs = document.querySelectorAll('input')
+
+    inputs.forEach(item => {
+        item.addEventListener('focus', () => {
+            if (error) {
+                error.remove()
+            }
+        })
+    })
+
+    const passwordInputs = document.querySelectorAll('.password-input')
+    const hidePassword = document.querySelector('.hide-password')
+
+    hidePassword.addEventListener('click', () => {
+        hidePassword.classList.toggle('show-password')
+
+        let type = 'password'
+        if (hidePassword.classList.contains('show-password')) {
+            type = 'text'
+        } else {
+            type = 'password'
+        }
+
+        passwordInputs.forEach(item => {
+            item.setAttribute('type', type)
+        })
+    })
+
+</script>

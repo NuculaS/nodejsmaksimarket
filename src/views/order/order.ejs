@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="/public/styles/order.css">
+
+<div class="orderPage">
+    <h1 class="mainHeader">Оформление заказа</h1>
+    <div class="cartList">
+        <div class='cartListTop'></div>
+        <form action="" method="post">
+            <% if(options?.error) { %>
+                <p class="error"><%= options?.error; %></p>
+            <% } %>
+
+            <input type="text" name="name" placeholder="Ваше имя" required />
+            <input type="text" name="address" placeholder="Адрес" required />
+            <input type="tel" name="phone" placeholder="Номер телефона" required />
+
+            <div class='cartListOrder'>
+                <button type="submit">Сделать заказ</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const error = document.querySelector('.error')
+    const inputs = document.querySelectorAll('input')
+
+    inputs.forEach(item => {
+        item.addEventListener('focus', () => {
+            if (error) {
+                error.remove()
+            }
+        })
+    })
+
+    const cartList = document.querySelector('.cartListTop')
+    const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : {}
+
+    if (cart.products && cart.products.length) {
+        cart.products.forEach(item => {
+            cartList.innerHTML += `
+                <div class="cartListProduct">
+                    <div class="productInfo">
+                        <p>${item.name}</p>
+                        <div class="productCount">
+                            <p class="countInfo">${item.count} ⤫ ${item.cost} руб</p>
+                            <b class="counter">${item.count * item.cost} руб</b>
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+
+        cartList.innerHTML += `
+            <div class="cartListInfoTotalCount">
+                <p class="cartListInfoTotalCountError">${cart.totalAmount > 3000 ? 'Полная предоплата' : 'Итого:'}</p>
+                <p class="cartListInfoTotalCountMoney">${cart.totalAmount} руб</p>
+            </div>
+        `
+
+        document.cookie = `cart=${JSON.stringify(cart.products.map((item) => ({_id: item._id, count: item.count})))}`
+    } else {
+        const cartList = document.querySelector('.cartList')
+        cartList.innerHTML = 'Пустой заказ не может быть сформирован :('
+
+        const cartListOrder = document.createElement('div')
+        cartListOrder.classList = 'cartListOrder'
+        cartListOrder.innerHTML = '<a href="/products">Вернуться к продуктам</a>'
+        cartList.append(cartListOrder)
+    }
+
+</script>

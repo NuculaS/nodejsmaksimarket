@@ -1,0 +1,11 @@
+<div class="orderItem">
+    <b class="orderTitle">Заказ №<%= orderItem._id; %></b>
+    <p><b>Адресс:</b> <%= orderItem.address; %></p>
+    <p><b>Заказчик:</b> <%= orderItem.name; %></p>
+    <p class="phone"><b>Номер телефона:</b> <%= orderItem.phone; %></p>
+
+    <% orderItem.products.forEach(product => { %>
+        <%- include('productItem', {product: product}); %>
+    <% }); %>
+    <h3 class="totalAmount">Итого: <%= orderItem.totalAmount; %> руб</h3>
+</div>

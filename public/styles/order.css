@@ -1,0 +1,139 @@
+.orderPage {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 80vh;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.cartList {
+    margin-top: 40px;
+    width: 500px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 20px;
+}
+
+.cartListProduct {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 5px;
+}
+
+.cartListProduct:last-child {
+    margin-bottom: 0;
+}
+
+.productInfo {
+    flex: 1;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.productCount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0 0;
+}
+
+.countInfo {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cartListInfoTotalCount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 15px 10px;
+    padding: 0 5px 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.cartListInfoTotalCountMoney {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.cartListInfoTotalCountError {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+form input {
+    width: 100%;
+    font-size: 1.2rem;
+    display: block;
+    border-radius: 8px;
+    outline: none;
+    padding: 15px 15px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+    margin-top: 10px;
+}
+
+form input::placeholder {
+    color: #e5e5e5;
+}
+
+form .error {
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.cartListOrder {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.orderPage button,
+.orderPage a {
+    font-size: 1.2rem;
+    border-radius: 8px;
+    padding: 15px 15px;
+    transition: all 0.2s ease-in-out;
+    background-color: #ffffff;
+    cursor: pointer;
+    color: #080710;
+    text-decoration: none;
+    border: none;
+}
+
+.orderPage button:hover,
+.orderPage a:hover {
+    transition: all 0.2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+}
+
+@media screen and (max-width: 560px) {
+    .cartList {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .cartList {
+        width: 100%;
+    }
+
+    .orderPage {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

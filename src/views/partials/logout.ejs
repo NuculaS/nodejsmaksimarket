@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/public/styles/logout.css">
+<a class="logout" href="/logout"></a>
+
+<script>
+    const logout = document.querySelector('.logout')
+
+    logout.addEventListener('click', (e) => {
+        localStorage.clear()
+        document.cookie = "cart=cart; path=/; max-age=0"
+        document.cookie = "token=token; path=/; max-age=0"
+        window.location.replace('/auth')
+    })
+
+</script>

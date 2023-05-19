@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/public/styles/product_list.css">
+
+<div class="productListMain">
+    <h1 class="mainHeader">Список продуктов</h1>
+    <% if(options?.countOfPages > 1) { %>
+        <p class="pagination">
+            <% if(options?.page > 1) { %>
+                <a href="/products?page=<%= options?.page - 1 %>"><%= options?.page - 1 %></a>
+            <% } %>
+
+            <a class="active" href="/products?page=<%= options?.page %>"><%= options?.page %></a>
+
+            <% if(options?.page < options?.countOfPages) { %>
+                <a href="/products?page=<%= options?.page + 1 %>"><%= options?.page + 1 %></a>
+            <% } %>
+        </p>
+    <% } %>
+    <div class="productList">
+        <% options?.products.forEach(product => { %>
+            <%- include('product', {product: product}); %>
+        <% }); %>
+    </div>
+</div>
+
+<script>
+
+</script>

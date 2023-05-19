@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/public/styles/orderSuccess.css">
+
+<div class="orderPage">
+    <h1 class="mainHeader">Заказ создан</h1>
+    <p>№<%= options?.id %></p>
+    <a href="/products">Продолжить покупки</a>
+    <a href="/home">Ваши заказы</a>
+</div>
+
+<script>
+    localStorage.clear()
+    document.cookie = "cart=cart; path=/; max-age=0"
+</script>

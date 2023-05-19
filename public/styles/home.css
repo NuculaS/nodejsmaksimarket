@@ -1,0 +1,93 @@
+.homePage {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 80vh;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.homePage .mainHeader {
+    margin-bottom: 20px;
+}
+
+.pagination a {
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    padding: 5px 10px;
+    transition: all 0.2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.13);
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+}
+
+.pagination .active {
+    background-color: #ffffff;
+    color: #080710;
+}
+
+.pagination a:hover {
+    transition: all 0.2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+}
+
+.orderList {
+    margin-top: 20px;
+    width: 500px;
+    border-radius: 12px;
+}
+
+.orderItem {
+    width: 100%;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.13);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.orderItem:last-child {
+    margin-bottom: 15px;
+}
+
+.orderTitle {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.productItem {
+    display: flex;
+    align-items: center;
+}
+
+.productItem p {
+    font-size: 1rem;
+}
+
+.productItem .cross {
+    font-size: 0.6rem;
+    margin: 0 2px;
+}
+
+.phone {
+    margin-bottom: 10px;
+}
+
+.totalAmount {
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 560px) {
+    .orderList {
+        width: 100%;
+    }
+
+    .homePage {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

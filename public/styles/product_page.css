@@ -1,0 +1,135 @@
+.productPage {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 80vh;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.product {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.productPicture {
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+    width: 480px;
+    height: 480px;
+    background-color: rgba(255, 255, 255, 0.07);
+    margin: 20px;
+}
+
+.productInfo {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    width: 480px;
+    background-color: rgba(255, 255, 255, 0.13);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.productInfo h2 {
+    margin-top: 10px;
+}
+
+.productInfo button {
+    font-size: 1.2rem;
+    display: block;
+    border-radius: 8px;
+    height: 50px;
+    padding: 0 15px;
+    transition: all 0.2s ease-in-out;
+    background-color: #ffffff;
+    cursor: pointer;
+    color: #080710;
+    border: none;
+}
+
+.productInfo button:hover {
+    bottom: -30px;
+    transition: all 0.2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+}
+
+.productCount {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 10px;
+}
+
+.productCount .small {
+    box-sizing: border-box;
+    font-weight: 600;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.productCount .counter {
+    font-size: 1.8rem;
+    margin: 0 10px;
+    vertical-align: center;
+}
+
+.productInfo .cartBlock {
+    display: flex;
+    align-items: center;
+}
+
+.productCount p,
+.cartBlock a {
+    margin-left: 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cartBlock a:hover {
+    color: white;
+}
+
+.cartBlock .syncCounter {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+form {
+    margin-top: 20px;
+}
+
+form input {
+    display: none;
+}
+
+@media screen and (max-width: 560px) {
+    .productPicture {
+        width: 360px;
+        height: 360px;
+    }
+
+    .productInfo {
+        margin-top: 0;
+        padding: 20px;
+        width: 360px;
+    }
+
+    .productInfo .cartBlock {
+        flex-wrap: wrap;
+    }
+
+    .cartBlock p {
+        margin-top: 10px;
+    }
+
+    .cartBlock a {
+        margin: 0;
+    }
+}

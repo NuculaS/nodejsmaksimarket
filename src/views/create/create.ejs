@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/public/styles/create.css">
+
+<div class="createPage">
+    <h1 class="mainHeader">Создание товара</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        <% if(options?.error) { %>
+            <p class="error"><%= options?.error; %></p>
+        <% } %>
+        <input type="text" name='name' placeholder="Название продукта" required>
+        <input type="text" name='description' placeholder="Описание продукта" required>
+        <input type="number" name='cost' placeholder="Стоимость" required min='0' max='3000'>
+        <input type="file" name='picture' placeholder="Изображение" required accept="image/png, image/jpeg">
+        <button type="submit">Создать продукт</button>
+    </form>
+</div>
+
+<script>
+    const error = document.querySelector('.error')
+    const inputs = document.querySelectorAll('input')
+
+    inputs.forEach(item => {
+        item.addEventListener('focus', () => {
+            if (error) {
+                error.remove()
+            }
+        })
+    })
+</script>
